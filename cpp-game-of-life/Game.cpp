@@ -7,8 +7,17 @@ Game::Game ()
 
 }
 
+Game::~Game ()
+{
+
+    delete &map;
+
+}
+
 void Game::Initialize ()
 {
+
+    map = *new Map ();
 
     while (true)
     {
@@ -32,8 +41,7 @@ void Game::Logic ()
 void Game::Render ()
 {
 
-    for (int k = 0; k < 100; k++)
-        std::cout << std::endl;
+    system ("cls");
 
     for
     (
