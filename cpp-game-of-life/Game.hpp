@@ -9,6 +9,10 @@
 class Game
 {
 
+    static const int GAME_SPEED_MILLISECONDS    = 1000;
+    static const int MAP_SIZE                   = 800;
+    static const int MAX_CELLS_PER_ROW          = 40;
+
     Map map;
 
     void Game::Initialize ();

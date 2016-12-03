@@ -1,6 +1,6 @@
 #include "Game.hpp"
 
-Game::Game ()
+Game::Game () : map (Game::MAP_SIZE)
 {
 
     Game::Initialize ();
@@ -17,7 +17,7 @@ Game::~Game ()
 void Game::Initialize ()
 {
 
-    map = *new Map ();
+    map = *new Map (Game::MAP_SIZE);
 
     while (true)
     {
@@ -25,7 +25,7 @@ void Game::Initialize ()
         Game::Logic ();
         Game::Render ();
 
-        Sleep (1000);
+        Sleep (Game::GAME_SPEED_MILLISECONDS);
 
     }
 
@@ -43,30 +43,22 @@ void Game::Render ()
 
     system ("cls");
 
-    for
-    (
-        int i = 0;
-        i < (sizeof (map.y)) / (sizeof (map.y[0]));
-        i++
-    )
+    int cellCountInRow = 0;
+    for (auto cell : map.GetCells ())
     {
 
-        std::cout << map.y[i];
+        std::cout << cell.GetGraphic ();
+        cellCountInRow++;
 
-        for
-        (
-            int j = 0;
-            j < (sizeof (map.x)) / (sizeof (map.x[0]));
-            j++
-        )
+        if (cellCountInRow >= Game::MAX_CELLS_PER_ROW)
         {
 
-            std::cout << map.x[j];
+            cellCountInRow = 0;
+            std::cout << std::endl;
 
         }
 
-        std::cout << std::endl;
-
     }
+
 
 }

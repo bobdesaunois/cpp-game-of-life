@@ -1,30 +1,24 @@
 #include "Map.hpp"
 
-Map::Map ()
+Map::Map (int amountOfCells)
 {
 
-    for 
-    (
-        int i = 0; 
-        i < (sizeof (y)) / (sizeof (y[0])); 
-        i++
-    )
+    // Fill cells vector with specified amount of cells
+    for (int i = 0; i < amountOfCells; i++)
+        cells.push_back (*new Cell (true));
+
+    for (auto &cell : cells)
     {
 
-        y[i] = ' ';
-
-        for 
-        (
-            int j = 0; 
-            j < (sizeof (x)) / (sizeof (x[0])); 
-            j++
-        )
-        {
-
-            x[j] = '.';
-
-        }
+        
 
     }
+
+}
+
+std::vector<Cell> Map::GetCells ()
+{
+    
+    return cells;
 
 }

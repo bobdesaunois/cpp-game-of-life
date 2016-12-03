@@ -1,5 +1,9 @@
 #include "Cell.hpp"
 
+bool Cell::IsMarkedForDeath ()  { return isMarkedForDeath; }
+bool Cell::IsAlive ()           { return isAlive; }
+char Cell::GetGraphic ()        { return isAlive ? 'O' : ' '; }
+
 Cell::Cell (bool alive)
 {
 
@@ -7,22 +11,17 @@ Cell::Cell (bool alive)
 
 }
 
-bool Cell::IsMarkedForDeath ()  { return isMarkedForDeath; }
-bool Cell::IsAlive ()           { return isAlive; }
-
 void Cell::Die ()
 {
 
     isAlive = false;
-    graphic = ' ';
 
 }
 
-void Cell::BeBorn ()
+void Cell::Revive ()
 {
 
     isAlive = true;
-    graphic = 'O';
 
 }
 
@@ -33,4 +32,12 @@ void Cell::MarkForDeath ()
 
 }
 
+void Cell::AssignNeighbour (Cell neighbour)
+{
 
+    // The order in which neighbours are added doesn't matter,
+    // the rules of the Game of Life don't care about that.
+    // Therefore it's safe to just use push_back ().
+    neighbours.push_back (neighbour);
+
+}

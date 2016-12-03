@@ -1,25 +1,30 @@
 #ifndef CELL_HPP
 #define CELL_HPP
 
+#include <vector>
+
+class Map;
+
 class Cell
 {
     
-    int kaas = 2;
-    Cell* kaass;
     bool isMarkedForDeath;
     bool isAlive = false;
-    char graphic;
+
+    std::vector<Cell> neighbours;
 
 public:
 
-    Cell (bool alive);
+    Cell (bool alive = false);
 
     bool IsMarkedForDeath ();
     bool IsAlive ();
+    char GetGraphic ();
 
     void Die ();
     void MarkForDeath ();
-    void BeBorn ();
+    void Revive ();
+    void AssignNeighbour (Cell neighbour);
 
 };
 
