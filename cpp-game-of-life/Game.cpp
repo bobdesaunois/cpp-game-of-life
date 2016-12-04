@@ -19,23 +19,24 @@ void Game::Initialize ()
 
     map = *new Map (Game::MAP_SIZE);
 
-    while (true)
-    {
+    /*while (true)
+    {*/
 
         Game::Logic ();
         Game::Render ();
 
         Sleep (Game::GAME_SPEED_MILLISECONDS);
 
-    }
+    //}
+
+    // This is here for debugging purposes
+    int i;
+    std::cin >> i;
 
 }
 
 void Game::Logic ()
 {
-
-
-
 }
 
 void Game::Render ()
@@ -50,7 +51,7 @@ void Game::Render ()
         std::cout << cell.GetGraphic ();
         cellCountInRow++;
 
-        if (cellCountInRow >= Game::MAX_CELLS_PER_ROW)
+        if (cellCountInRow >= Game::CELLS_PER_ROW)
         {
 
             cellCountInRow = 0;

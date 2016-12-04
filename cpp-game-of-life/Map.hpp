@@ -13,6 +13,7 @@ public:
 
     Map::Map (int amountOfCells);
     std::vector<Cell> Map::GetCells ();
+    bool ValidateCellPosition (int position);
 
 };
 
