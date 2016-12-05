@@ -15,7 +15,7 @@ void Game::Initialize ()
     /*while (true)
     {*/
 
-        //Game::Logic ();
+        Game::Logic ();
         Game::Render ();
 
         //Sleep (Game::GAME_SPEED_MILLISECONDS);
@@ -30,6 +30,15 @@ void Game::Initialize ()
 
 void Game::Logic ()
 {
+
+    std::vector<Cell*> neighbourPtr = map.GetCells ().at (680).GetNeighbours ();
+    for (Cell* ptr : neighbourPtr)
+    {
+
+        ptr->Die ();
+
+    }
+
 }
 
 void Game::Render ()

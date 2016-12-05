@@ -13,7 +13,7 @@ void Map::GenerateMap (int amountOfCells)
     for (int i = 0; i < amountOfCells; i++)
     {
 
-        cells.push_back (*new Cell ());
+        cells.push_back (*new Cell (true));
 
     }
 
@@ -50,14 +50,14 @@ void Map::GenerateMap (int amountOfCells)
 
         for (int position : positions)
         {
-
+            
             if (ValidateCellPosition (position))
             {
 
                 // Save a pointer to neighbouring cell
                 Cell* cellPtr = &cells.at (position);
-                //cellPtr->Die ();
-                cell.AssignNeighbour (cellPtr);
+                
+                    cell.AssignNeighbour (cellPtr);
 
             }
 

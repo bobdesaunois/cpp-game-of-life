@@ -1,8 +1,9 @@
 #include "Cell.hpp"
 
-bool Cell::IsMarkedForDeath ()  { return isMarkedForDeath; }
-bool Cell::IsAlive ()           { return isAlive; }
-char Cell::GetGraphic ()        { return isAlive ? 'O' : ' '; }
+bool               Cell::IsMarkedForDeath ()    { return isMarkedForDeath; }
+bool               Cell::IsAlive ()             { return isAlive; }
+char               Cell::GetGraphic ()          { return isAlive ? 'O' : ' '; }
+std::vector<Cell*> Cell::GetNeighbours ()       { return neighbours; }
 
 Cell::Cell (bool alive)
 {
