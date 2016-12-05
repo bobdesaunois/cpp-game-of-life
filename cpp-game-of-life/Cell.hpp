@@ -21,7 +21,7 @@ public:
     bool IsMarkedForDeath ();
     bool IsAlive ();
     char GetGraphic ();
-    std::vector <Cell*> GetNeighbours ();
+    std::vector<Cell*> GetNeighbours ();
 
     void Die ();
     void MarkForDeath ();
