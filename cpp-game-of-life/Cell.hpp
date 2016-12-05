@@ -2,8 +2,7 @@
 #define CELL_HPP
 
 #include <vector>
-
-using namespace std;
+#include <memory>
 
 class Map;
 
@@ -13,7 +12,7 @@ class Cell
     bool isMarkedForDeath;
     bool isAlive = false;
 
-    std::vector<Cell> neighbours;
+    std::vector<Cell*> neighbours;
 
 public:
 
@@ -26,7 +25,7 @@ public:
     void Die ();
     void MarkForDeath ();
     void Revive ();
-    void AssignNeighbour (Cell neighbour);
+    void AssignNeighbour (Cell* neighbour);
 
 };
 

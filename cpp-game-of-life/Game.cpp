@@ -1,31 +1,24 @@
 #include "Game.hpp"
 
-Game::Game () : map (Game::MAP_SIZE)
+Game::Game ()
 {
 
     Game::Initialize ();
 
 }
 
-Game::~Game ()
-{
-
-    delete &map;
-
-}
-
 void Game::Initialize ()
 {
 
-    map = *new Map (Game::MAP_SIZE);
+    map.GenerateMap (Game::MAP_SIZE);
 
     /*while (true)
     {*/
 
-        Game::Logic ();
+        //Game::Logic ();
         Game::Render ();
 
-        Sleep (Game::GAME_SPEED_MILLISECONDS);
+        //Sleep (Game::GAME_SPEED_MILLISECONDS);
 
     //}
 
@@ -45,7 +38,7 @@ void Game::Render ()
     system ("cls");
 
     int cellCountInRow = 0;
-    for (auto cell : map.GetCells ())
+    for (auto &cell : map.GetCells ())
     {
 
         std::cout << cell.GetGraphic ();

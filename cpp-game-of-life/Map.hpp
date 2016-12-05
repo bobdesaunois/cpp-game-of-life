@@ -11,7 +11,8 @@ class Map
 
 public:
 
-    Map::Map (int amountOfCells);
+    Map::Map ();
+    void Map::GenerateMap (int amountOfCells);
     std::vector<Cell> Map::GetCells ();
     bool ValidateCellPosition (int position);
 

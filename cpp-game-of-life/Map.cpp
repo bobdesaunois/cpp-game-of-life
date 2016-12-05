@@ -2,31 +2,34 @@
 #include "Game.hpp"
 #include <iostream>
 
-Map::Map (int amountOfCells)
+Map::Map ()
+{
+}
+
+void Map::GenerateMap (int amountOfCells)
 {
 
     // Fill cells vector with specified amount of cells
     for (int i = 0; i < amountOfCells; i++)
     {
 
-        cells.push_back (*new Cell (true));
+        cells.push_back (*new Cell ());
 
     }
 
     int cellIndex = 0;
-    for (auto cell : cells)
+    for (auto &cell : cells)
     {
 
         // Let's find some indexes of potential neighbours 
-        
         std::vector<int> positions;
 
         // Top-Left
         positions.push_back ((cellIndex - 1) - Game::CELLS_PER_ROW);
-        
+
         // Top
         positions.push_back (cellIndex - Game::CELLS_PER_ROW);
-        
+
         // Top-Right
         positions.push_back ((cellIndex + 1) - Game::CELLS_PER_ROW);
 
@@ -52,7 +55,9 @@ Map::Map (int amountOfCells)
             {
 
                 // Save a pointer to neighbouring cell
-                cell.AssignNeighbour (cells.at (position));
+                Cell* cellPtr = &cells.at (position);
+                //cellPtr->Die ();
+                cell.AssignNeighbour (cellPtr);
 
             }
 
@@ -74,9 +79,4 @@ bool Map::ValidateCellPosition (int position)
 
 }
 
-std::vector<Cell> Map::GetCells ()
-{
-    
-    return cells;
-
-}
+std::vector<Cell> Map::GetCells () { return cells; }

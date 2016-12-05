@@ -32,7 +32,7 @@ void Cell::MarkForDeath ()
 
 }
 
-void Cell::AssignNeighbour (Cell neighbour)
+void Cell::AssignNeighbour (Cell* neighbour)
 {
 
     // The order in which neighbours are added doesn't matter,
