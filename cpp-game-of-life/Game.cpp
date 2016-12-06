@@ -31,7 +31,10 @@ void Game::Initialize ()
 void Game::Logic ()
 {
 
-    std::vector<Cell*> neighbourPtr = map.GetCells ().at (680).GetNeighbours ();
+    std::vector<Cell*> neighbourPtr = map.GetCells ()
+        .at (630)
+        .GetNeighbours ();
+    
     for (Cell* ptr : neighbourPtr)
     {
 
@@ -50,6 +53,7 @@ void Game::Render ()
     for (auto &cell : map.GetCells ())
     {
 
+        // Render every cell in a square grid
         std::cout << cell.GetGraphic ();
         cellCountInRow++;
 
