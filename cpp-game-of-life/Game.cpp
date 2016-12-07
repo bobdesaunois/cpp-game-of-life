@@ -31,8 +31,8 @@ void Game::Initialize ()
 void Game::Logic ()
 {
 
-    auto neighbourPtr = map.GetCells ().at (680).GetNeighbours ();
-    for (auto ptr : neighbourPtr)
+    std::vector<Cell*> neighbourPtr = map.GetCells ().at (680).GetNeighbours ();
+    for (Cell* ptr : neighbourPtr)
     {
 
         ptr->Die ();

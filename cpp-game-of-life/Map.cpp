@@ -55,9 +55,9 @@ void Map::GenerateMap (int amountOfCells)
             {
 
                 // Save a pointer to neighbouring cell
-                auto cellPtr = std::make_shared<Cell> (cells.at (position));
+                Cell* cellPtr = &cells.at (position);
                 
-                cell.AssignNeighbour (cellPtr);
+                    cell.AssignNeighbour (cellPtr);
 
             }
 
