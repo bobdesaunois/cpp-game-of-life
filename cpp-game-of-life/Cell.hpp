@@ -12,7 +12,7 @@ class Cell
     bool isMarkedForDeath;
     bool isAlive = false;
 
-    std::vector<Cell*> neighbours;
+    std::vector<std::shared_ptr<Cell>> neighbours;
 
 public:
 
@@ -21,12 +21,12 @@ public:
     bool IsMarkedForDeath ();
     bool IsAlive ();
     char GetGraphic ();
-    std::vector<Cell*> GetNeighbours ();
+    std::vector<std::shared_ptr<Cell>> GetNeighbours ();
 
     void Die ();
     void MarkForDeath ();
     void Revive ();
-    void AssignNeighbour (Cell* neighbour);
+    void AssignNeighbour (std::shared_ptr<Cell> neighbour);
 
 };
 

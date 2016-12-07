@@ -1,9 +1,12 @@
 #include "Cell.hpp"
 
-bool               Cell::IsMarkedForDeath ()    { return isMarkedForDeath; }
-bool               Cell::IsAlive ()             { return isAlive; }
-char               Cell::GetGraphic ()          { return isAlive ? 'O' : ' '; }
-std::vector<Cell*> Cell::GetNeighbours ()       { return neighbours; }
+bool Cell::IsMarkedForDeath ()    { return isMarkedForDeath; }
+bool Cell::IsAlive ()             { return isAlive; }
+char Cell::GetGraphic ()          { return isAlive ? 'O' : ' '; }
+std::vector<std::shared_ptr<Cell>> Cell::GetNeighbours () 
+{ 
+    return neighbours; 
+}
 
 Cell::Cell (bool alive)
 {
@@ -33,7 +36,7 @@ void Cell::MarkForDeath ()
 
 }
 
-void Cell::AssignNeighbour (Cell* neighbour)
+void Cell::AssignNeighbour (std::shared_ptr<Cell> neighbour)
 {
 
     // The order in which neighbours are added doesn't matter,
