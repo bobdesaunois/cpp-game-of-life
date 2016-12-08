@@ -1,9 +1,10 @@
 #include "Map.hpp"
-#include "Game.hpp"
-#include <iostream>
 
-Map::Map ()
+Map::Map (int amountOfCells)
 {
+
+    GenerateMap (amountOfCells);
+
 }
 
 void Map::GenerateMap (int amountOfCells)
@@ -56,8 +57,7 @@ void Map::GenerateMap (int amountOfCells)
 
                 // Save a pointer to neighbouring cell
                 Cell* cellPtr = &cells.at (position);
-                
-                    cell.AssignNeighbour (cellPtr);
+                cell.AssignNeighbour (cellPtr);
 
             }
 

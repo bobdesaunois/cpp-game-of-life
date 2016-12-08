@@ -3,7 +3,7 @@
 int main ()
 {
 
-    new Game ();
+    Game game;
 
     return 0;
 

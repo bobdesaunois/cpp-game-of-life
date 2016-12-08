@@ -1,6 +1,7 @@
 #include "Game.hpp"
 
 Game::Game ()
+    : map (Game::MAP_SIZE)
 {
 
     Game::Initialize ();
@@ -9,8 +10,6 @@ Game::Game ()
 
 void Game::Initialize ()
 {
-
-    map.GenerateMap (Game::MAP_SIZE);
 
     /*while (true)
     {*/
@@ -31,7 +30,7 @@ void Game::Initialize ()
 void Game::Logic ()
 {
 
-    std::vector<Cell*> neighbourPtr = map.GetCells ().at (680).GetNeighbours ();
+    std::vector<Cell*> neighbourPtr = map.GetCells ().at (420).GetNeighbours ();
     for (Cell* ptr : neighbourPtr)
     {
 
