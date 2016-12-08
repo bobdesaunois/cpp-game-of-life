@@ -60,7 +60,7 @@ void Map::GenerateMap (int amountOfCells)
                 cell.AssignNeighbour (cellPtr);
 
             }
-
+            
         }
 
         cellIndex++;
