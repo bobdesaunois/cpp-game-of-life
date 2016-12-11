@@ -11,14 +11,14 @@ Map::Map (int amountOfCells)
 void Map::GenerateMap (int amountOfCells)
 {
 
-    srand (time(NULL));
+    //srand (Game::RANDOM_SEED);
 
     // Fill cells vector with specified amount of cells
     for (int i = 0; i < amountOfCells; i++)
     {
 
-        int randomNumber = (rand () % Game::MAP_CELL_DENSITY) + 1;
-        bool deadOrAlive = randomNumber == 1 ? true : false;
+        int randomNumber = (rand () % Game::MAP_CELL_DENSITY);
+        bool deadOrAlive = randomNumber < 10 ? true : false;
         cells.push_back (*new Cell (deadOrAlive));
 
     }

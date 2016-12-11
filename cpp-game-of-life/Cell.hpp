@@ -2,7 +2,6 @@
 #define CELL_HPP
 
 #include <vector>
-#include <memory>
 
 class Map;
 
