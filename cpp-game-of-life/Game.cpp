@@ -11,15 +11,15 @@ Game::Game ()
 void Game::Initialize ()
 {
 
-    /*while (true)
-    {*/
+    while (true)
+    {
 
         Game::Logic ();
         Game::Render ();
 
-        //Sleep (Game::GAME_SPEED_MILLISECONDS);
+        Sleep (Game::GAME_SPEED_MILLISECONDS);
 
-    //}
+    }
 
     // This is here for debugging purposes
     int i;
@@ -30,11 +30,11 @@ void Game::Initialize ()
 void Game::Logic ()
 {
 
-    std::vector<Cell*> neighbourPtr = map.GetCells ().at (420).GetNeighbours ();
-    for (Cell* ptr : neighbourPtr)
+    std::vector<Cell>* mapPtr = map.GetCells ();
+    for (auto& cell : *mapPtr)
     {
-
-        ptr->Die ();
+     
+        cell.Live ();
 
     }
 
@@ -45,18 +45,24 @@ void Game::Render ()
 
     system ("cls");
 
+    std::vector<Cell>* cells = map.GetCells ();
+
     int cellCountInRow = 0;
-    for (auto &cell : map.GetCells ())
+
+    for (auto cell : *cells)
     {
 
-        std::cout << cell.GetGraphic ();
+        std::cout 
+            << cell.GetGraphic ();
+
         cellCountInRow++;
 
         if (cellCountInRow >= Game::CELLS_PER_ROW)
         {
 
             cellCountInRow = 0;
-            std::cout << std::endl;
+            std::cout 
+                << std::endl;
 
         }
 

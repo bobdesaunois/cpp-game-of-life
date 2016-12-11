@@ -3,7 +3,8 @@
 
 #include <iostream>
 #include <vector>
-#include "Game.hpp"
+#include <cstdlib>
+#include <time.h>
 #include "Cell.hpp"
 
 class Map
@@ -15,7 +16,7 @@ class Map
 public:
 
     Map::Map (int amountOfCells);
-    std::vector<Cell> Map::GetCells ();
+    std::vector<Cell>* Map::GetCells ();
     bool Map::ValidateCellPosition (int position);
 
 };

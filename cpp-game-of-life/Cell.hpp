@@ -9,22 +9,20 @@ class Map;
 class Cell
 {
     
-    bool isMarkedForDeath;
     bool isAlive = false;
-
     std::vector<Cell*> neighbours;
 
 public:
 
     Cell (bool alive = false);
 
-    bool IsMarkedForDeath ();
     bool IsAlive ();
     char GetGraphic ();
     std::vector<Cell*> GetNeighbours ();
+    int getAmountOfLiveNeighbours ();
 
+    void Live ();
     void Die ();
-    void MarkForDeath ();
     void Revive ();
     void AssignNeighbour (Cell* neighbour);
 

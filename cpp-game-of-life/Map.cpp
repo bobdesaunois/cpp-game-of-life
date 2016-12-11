@@ -1,4 +1,5 @@
 #include "Map.hpp"
+#include "Game.hpp" // Having this include here fixes some strange error
 
 Map::Map (int amountOfCells)
 {
@@ -10,16 +11,21 @@ Map::Map (int amountOfCells)
 void Map::GenerateMap (int amountOfCells)
 {
 
+    srand (time(NULL));
+
     // Fill cells vector with specified amount of cells
     for (int i = 0; i < amountOfCells; i++)
     {
 
-        cells.push_back (*new Cell (true));
+        int randomNumber = (rand () % Game::MAP_CELL_DENSITY) + 1;
+        bool deadOrAlive = randomNumber == 1 ? true : false;
+        cells.push_back (*new Cell (deadOrAlive));
 
     }
 
+    // TODO give this block of code it's own method or class (NeighbourFinder)
     int cellIndex = 0;
-    for (auto &cell : cells)
+    for (auto& cell : cells)
     {
 
         // Let's find some indexes of potential neighbours 
@@ -55,6 +61,31 @@ void Map::GenerateMap (int amountOfCells)
             if (ValidateCellPosition (position))
             {
 
+                /*
+                 * There's a problem with the way our Map is built.
+                 * I'm storing the cells of the Map in a single Vector.
+                 * This means that in memory the map is nothing more than a long
+                 * row of cells, and not a grid at all.
+                 * The following if-else-if block solves this problem.
+                 * It makes sure that cells ignore their neighbours on previous
+                 * and next rows.
+                 *
+                 */
+                if ((position + 1) % Game::CELLS_PER_ROW == 0)
+                {
+
+                    // Ignore neighbours on the next row
+                    continue;
+
+                } 
+                else if (position % Game::CELLS_PER_ROW == 0)
+                {
+
+                    // Ignore neighbours on the previous row
+                    continue;
+
+                }
+
                 // Save a pointer to neighbouring cell
                 Cell* cellPtr = &cells.at (position);
                 cell.AssignNeighbour (cellPtr);
@@ -73,10 +104,15 @@ bool Map::ValidateCellPosition (int position)
 {
 
     if (position > 0 && position < Game::MAP_SIZE)
+    {
+        
+        // If the cell to be validated is not out-of-bounds
         return true;
+
+    }
 
     return false;
 
 }
 
-std::vector<Cell> Map::GetCells () { return cells; }
+std::vector<Cell>* Map::GetCells () { return &cells; }

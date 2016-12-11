@@ -1,0 +1,6 @@
+=====================================================
+todo list
+=====================================================
+
+1. (DONE) The map shouldn't loopback with cell 140 having 141 (which is on the other side) as his neighbour
+2. Apply the rules of Conway's Game of Life (see \rules.txt)
