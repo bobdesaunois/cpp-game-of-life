@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
-#include <time.h>
+//#include <time.h>
 #include "Cell.hpp"
 
 class Map
@@ -18,6 +18,7 @@ public:
     Map::Map (int amountOfCells);
     std::vector<Cell>* Map::GetCells ();
     bool Map::ValidateCellPosition (int position);
+    void Map::RerouteCellPosition (std::vector<int>* position);
 
 };
 
