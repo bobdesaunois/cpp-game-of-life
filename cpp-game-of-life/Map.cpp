@@ -63,6 +63,9 @@ void Map::GenerateMap (int amountOfCells)
             if (ValidateCellPosition (position))
             {
 
+                // Reroute out-of-bounds positions
+                RerouteCellPosition (&positions);
+
                 /*
                  * There's a problem with the way our Map is built.
                  * I'm storing the cells of the Map in a single Vector.
@@ -97,6 +100,29 @@ void Map::GenerateMap (int amountOfCells)
         }
 
         cellIndex++;
+
+    }
+
+}
+
+void Map::RerouteCellPosition (std::vector<int>* positions)
+{
+
+    for (auto& positionPtr : *positions)
+    {
+
+        if (positionPtr < 0)
+        {
+
+            positionPtr = Game::MAP_SIZE - positionPtr;
+
+        }
+        else if (positionPtr > Game::MAP_SIZE)
+        {
+
+            positionPtr = positionPtr - Game::MAP_SIZE;
+
+        }
 
     }
 
