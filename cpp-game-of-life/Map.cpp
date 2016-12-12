@@ -57,14 +57,15 @@ void Map::GenerateMap (int amountOfCells)
         // Bottom-Right
         positions.push_back ((cellIndex + 1) + Game::CELLS_PER_ROW);
 
-        for (int position : positions)
+        // Reroute out-of-bounds positions
+        RerouteOutOfBoundsCells (&positions);
+
+        for (auto& position : positions)
         {
             
             if (ValidateCellPosition (position))
             {
 
-                // Reroute out-of-bounds positions
-                RerouteCellPosition (&positions);
 
                 /*
                  * There's a problem with the way our Map is built.
@@ -105,7 +106,7 @@ void Map::GenerateMap (int amountOfCells)
 
 }
 
-void Map::RerouteCellPosition (std::vector<int>* positions)
+void Map::RerouteOutOfBoundsCells (std::vector<int>* positions)
 {
 
     for (auto& positionPtr : *positions)
@@ -114,7 +115,7 @@ void Map::RerouteCellPosition (std::vector<int>* positions)
         if (positionPtr < 0)
         {
 
-            positionPtr = Game::MAP_SIZE - positionPtr;
+            positionPtr = Game::MAP_SIZE + positionPtr; // Note that positionPtr has a negative value
 
         }
         else if (positionPtr > Game::MAP_SIZE)
