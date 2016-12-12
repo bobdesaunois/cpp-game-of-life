@@ -123,7 +123,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="rules.txt" />
-    <Text Include="todo.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
