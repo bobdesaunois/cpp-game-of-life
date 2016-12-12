@@ -18,7 +18,7 @@ public:
     Map::Map (int amountOfCells);
     std::vector<Cell>* Map::GetCells ();
     bool Map::ValidateCellPosition (int position);
-    void Map::RerouteCellPosition (std::vector<int>* position);
+    void Map::RerouteOutOfBoundsCells (std::vector<int>* position);
 
 };
 
