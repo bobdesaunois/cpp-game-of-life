@@ -1,6 +1,8 @@
 #include "Map.hpp"
 #include "Game.hpp" // Having this include here fixes some strange error
 
+std::vector<Cell>* Map::GetCells () { return &cells; }
+
 Map::Map (int amountOfCells)
 {
 
@@ -115,4 +117,3 @@ bool Map::ValidateCellPosition (int position)
 
 }
 
-std::vector<Cell>* Map::GetCells () { return &cells; }
