@@ -76,11 +76,29 @@ void Map::GenerateMap (int amountOfCells)
                  * It makes sure that cells ignore their neighbours on previous
                  * and next rows.
                  *
+                 * Next up to ensure that the left-edge and right-edge cells are neighbours, we have to apply some additional maths
                  */
                 if ((position + 1) % Game::CELLS_PER_ROW == 0)
                 {
 
-                    // Ignore neighbours on the next row
+                    std::vector<int> neighboursRightEdge;
+
+                    // TODO prevent out-of-bounds exceptions (the very first row will crash on cell 0, obviously).
+
+                    // We're at the right edge, so we will add the cells on the opposite side as neighbours
+                    neighboursRightEdge.push_back (position - ((Game::CELLS_PER_ROW * 2) - 1));
+                    neighboursRightEdge.push_back (position - (Game::CELLS_PER_ROW - 1));
+                    neighboursRightEdge.push_back (position + 1); // this is just + 1 since the next cell 
+                                                                  // is on the next row obviously it jumps down one row as well.
+                    
+                    for (auto& neighbour : neighboursRightEdge)
+                    {
+
+                        cell.AssignNeighbour (&cells.at (neighbour));
+
+                    }
+
+                    // We skip adding the actual position, since we've been doing this manually.
                     continue;
 
                 } 
@@ -91,6 +109,7 @@ void Map::GenerateMap (int amountOfCells)
                     continue;
 
                 }
+
 
                 // Save a pointer to neighbouring cell
                 Cell* cellPtr = &cells.at (position);
