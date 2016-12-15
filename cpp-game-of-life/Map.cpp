@@ -13,8 +13,6 @@ Map::Map (int amountOfCells)
 void Map::GenerateMap (int amountOfCells)
 {
 
-    //srand (Game::RANDOM_SEED);
-
     // Fill cells vector with specified amount of cells
     for (int i = 0; i < amountOfCells; i++)
     {
