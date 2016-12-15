@@ -69,9 +69,10 @@ void Map::GenerateMap (int amountOfCells)
 
                 /*
                  * There's a problem with the way our Map is built.
-                 * I'm storing the cells of the Map in a single Vector.
+                 * I'm storing the cells of the Map in a single vector<Cell>.
                  * This means that in memory the map is nothing more than a long
                  * row of cells, and not a grid at all.
+                 * Because of this the first cell on the second row would be the neighbour of the last cell of the first row.
                  * The following if-else-if block solves this problem.
                  * It makes sure that cells ignore their neighbours on previous
                  * and next rows.
@@ -81,29 +82,43 @@ void Map::GenerateMap (int amountOfCells)
                 if ((position + 1) % Game::CELLS_PER_ROW == 0)
                 {
 
+                    // We're at the right edge, so we will add the cells on the opposite side as neighbours
                     std::vector<int> neighboursRightEdge;
 
-                    // TODO prevent out-of-bounds exceptions (the very first row will crash on cell 0, obviously).
-
-                    // We're at the right edge, so we will add the cells on the opposite side as neighbours
                     neighboursRightEdge.push_back (position - ((Game::CELLS_PER_ROW * 2) - 1));
                     neighboursRightEdge.push_back (position - (Game::CELLS_PER_ROW - 1));
-                    neighboursRightEdge.push_back (position + 1); // this is just + 1 since the next cell 
+                    neighboursRightEdge.push_back (position + 1); // This is just + 1 since the next cell 
                                                                   // is on the next row obviously it jumps down one row as well.
                     
-                    for (auto& neighbour : neighboursRightEdge)
+
+                    for (int& potentialNeighbour : neighboursRightEdge)
                     {
 
-                        cell.AssignNeighbour (&cells.at (neighbour));
+                        // Check for out-of-bounds positions and remove them, otherwise, forget about them.
+                        if (potentialNeighbour > 0 && potentialNeighbour < Game::MAP_SIZE)
+                        {
+
+                            // If in-bounds
+                            cell.AssignNeighbour (&cells.at (potentialNeighbour));
+
+                        }
 
                     }
 
-                    // We skip adding the actual position, since we've been doing this manually.
+                    // We skip adding the actual 'auto& position' position, since we've been adding positions manually.
                     continue;
 
                 } 
                 else if (position % Game::CELLS_PER_ROW == 0)
                 {
+
+                    // At this point we're on the left side.
+                    std::vector<int> neighboursLeftEdge;
+
+                    neighboursLeftEdge.push_back (position - 1); // This is just - 1 since the next cell
+                                                                 // is on the previous row, obviously it jumps up one row as well.
+                    neighboursLeftEdge.push_back (position + ((Game::CELLS_PER_ROW * 2) - 1));
+                    neighboursLeftEdge.push_back (position + (Game::CELLS_PER_ROW - 1));
 
                     // Ignore neighbours on the previous row
                     continue;
@@ -134,7 +149,8 @@ void Map::RerouteOutOfBoundsCells (std::vector<int>* positions)
         if (positionPtr < 0)
         {
 
-            positionPtr = Game::MAP_SIZE + positionPtr; // Note that positionPtr has a negative value
+            // positionPtr at this point has a NEGATIVE value
+            positionPtr = Game::MAP_SIZE + positionPtr;
 
         }
         else if (positionPtr > Game::MAP_SIZE)
