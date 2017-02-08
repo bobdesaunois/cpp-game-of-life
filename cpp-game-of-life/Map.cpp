@@ -64,7 +64,6 @@ void Map::GenerateMap (int amountOfCells)
             if (ValidateCellPosition (position))
             {
 
-
                 /*
                  * There's a problem with the way our Map is built.
                  * I'm storing the cells of the Map in a single vector<Cell>.
