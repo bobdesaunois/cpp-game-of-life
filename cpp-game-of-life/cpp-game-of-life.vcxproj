@@ -113,7 +113,6 @@
     <ClInclude Include="Cell.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Map.hpp" />
-    <ClInclude Include="Program.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
