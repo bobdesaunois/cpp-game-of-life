@@ -1,5 +1,5 @@
 #include "Map.hpp"
-#include "Game.hpp" // Having this include here fixes some strange error
+#include "Game.hpp"
 
 std::vector<Cell>* Map::GetCells () { return &cells; }
 
