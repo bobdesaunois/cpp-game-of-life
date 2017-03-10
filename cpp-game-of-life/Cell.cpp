@@ -50,6 +50,7 @@ void Cell::Live ()
         {
 
             // We live!
+            return;
 
         }
         else if (amountOfLiveNeighbours > 3)
